@@ -1,6 +1,8 @@
 # Juliet Java Test Suite
 
+[![CI](https://github.com/UnitTestBot/juliet-java-test-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/UnitTestBot/juliet-java-test-suite/actions/workflows/ci.yml)
 [![JitPack](https://jitpack.io/v/UnitTestBot/juliet-java-test-suite.svg)](https://jitpack.io/p/UnitTestBot/juliet-java-test-suite)
+![License](https://img.shields.io/github/license/UnitTestBot/juliet-java-test-suite)
 
 A collection of test cases in the Java language.
 It contains examples organized under 112 different CWEs.
