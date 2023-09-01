@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: ./gradlew build --stacktrace --scan
 
-      - name: Upload JARs
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: jars
@@ -34,24 +34,9 @@ jobs:
             !**/*-sources.jar
             !**/*-javadoc.jar
 
-  release:
-    if: startsWith(github.ref, 'refs/tags/')
-    needs: build-linux
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout latest code
-        uses: actions/checkout@v3
-
-      - name: Download JARs
-        uses: actions/download-artifact@v3
-        with:
-          name: jars
-          path: build/jars
-
       - name: Release
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            build/jars/*.jar
+            juliet-*/build/libs/*.jar
