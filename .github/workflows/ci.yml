@@ -38,5 +38,11 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: |
-            juliet-*/build/libs/*.jar
+          files: juliet-*/build/libs/*.jar
+
+      - name: Trigger JitPack build on release tag
+        if: startsWith(github.ref, 'refs/tags/')
+        run:
+          VERSION="${GITHUB_REF/refs\/tags\/v/}"
+          JITPACK_URL="https://jitpack.io/com/github/${{ github.repository }}/${VERSION}/maven-metadata.xml"
+          curl -s -m 30 "${JITPACK_URL}" || true
